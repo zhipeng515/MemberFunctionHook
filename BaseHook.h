@@ -96,11 +96,11 @@ public:
 #pragma region Property
 public:
 	//Set / get the hook type
-	inline HookTypes GetHookType();
-	inline void SetHookType(HookTypes HookType);
+	HookTypes GetHookType();
+	void SetHookType(HookTypes HookType);
 	//Set / get the hook object thread id, give 0 for all thread
-	inline DWORD GetThreadId();
-	inline void SetThreadId(DWORD ThreadId);
+	DWORD GetThreadId();
+	void SetThreadId(DWORD ThreadId);
 	//Set / get whether the hook is running
 	bool GetEnabled();
 	void SetEnabled(bool Enabled);
