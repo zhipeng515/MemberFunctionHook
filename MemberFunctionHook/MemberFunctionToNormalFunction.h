@@ -5,6 +5,10 @@
 // 此模块需要运行数据段代码，需要关闭数据执行保护 /NXCOMPAT:NO
 #include <vector>
 
+#ifndef byte
+#define byte unsigned char
+#endif
+
 template<typename dst_type, typename src_type>
 static dst_type pointer_cast(src_type src)
 {
