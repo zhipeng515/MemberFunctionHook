@@ -23,6 +23,7 @@ HookManager::~HookManager()
 	for (auto it = m_Hooks.begin(); it != m_Hooks.end(); it++)
 	{
 		(*it)->SetEnabled(false);
+		delete *it;
 	}
 	m_Hooks.clear();
 }
@@ -41,6 +42,7 @@ void HookManager::RemoveHook(BaseHook::HookTypes HookType, DWORD ThreadId)
 		if ((*it)->GetHookType() == HookType && (*it)->GetThreadId() == ThreadId)
 		{
 			(*it)->SetEnabled(false);
+			delete *it;
 			it = m_Hooks.erase(it);
 		}
 		else
