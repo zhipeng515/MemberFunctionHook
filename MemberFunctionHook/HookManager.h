@@ -20,8 +20,8 @@ private:
 class HookManager : public Singleton<HookManager>
 {
 public:
-	HookManager();
-	~HookManager();
+	virtual bool Init();
+	virtual void Uninit();
 
 	void AddHook(BaseHook::HookTypes HookType, DWORD ThreadId, HookProcFunc HookProcFunc);
 	void RemoveHook(BaseHook::HookTypes HookType, DWORD ThreadId);

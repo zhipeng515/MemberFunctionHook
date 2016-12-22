@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "HookManager.h"
+#include "../../CommonFunction/StdLog.h"
 
 HookItem::HookItem(HookTypes HookType, DWORD ThreadId, HookProcFunc HookProcFunc) :
 	BaseHook(HookType, ThreadId)
@@ -13,12 +14,13 @@ LRESULT /*CALLBACK*/ HookItem::HookProcess(int nCode, WPARAM wParam, LPARAM lPar
 	return m_HookProcFunc(nCode, wParam, lParam);
 }
 
-HookManager::HookManager()
+bool HookManager::Init()
 {
+	return true;
 }
 
 
-HookManager::~HookManager()
+void HookManager::Uninit()
 {
 	for (auto it = m_Hooks.begin(); it != m_Hooks.end(); it++)
 	{
