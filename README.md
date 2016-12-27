@@ -18,3 +18,7 @@
 
 
   Hook模块需要继承BaseHook，重载HookProcess
+  
+  依赖
+  
+  * https://github.com/zhipeng515/CommonFunction.git
