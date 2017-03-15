@@ -6,22 +6,35 @@
 
 * 此模块需要运行数据段代码，需要关闭数据执行保护 /NXCOMPAT:NO
    
-  
-  
-转换功能例子
+
+
+例子
 ```C++
-		//===============================================================
-		//将类成员函数指针转化为一般函数指针
-		LRESULT(CALLBACK * PCoreHookProcess)(int nCode, WPARAM wParam, LPARAM lParam);
-		MEMBERFUNCTION_TO_NORMALFUNCTION(this, &BaseHook::CoreHookProcess, &PCoreHookProcess);
-		//===============================================================
-		point_HookID = SetWindowsHookEx(GetHookType(), PCoreHookProcess, hMod, GetThreadId());
+
+GamePageUi::GamePageUi()
+{
+	HookManager::Instance()->AddHook(BaseHook::Keyboard, GetCurrentThreadId(),
+	std::bind(&GamePageUi::KeyboardHookProc, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+}
+LRESULT GamePageUi::KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
+{
+	//屏蔽F10
+	if (wParam == VK_F10)
+		return 1;
+	return 0;
+}
 ```
 
+转换功能例子
+```C++
+//===============================================================
+//将类成员函数指针转化为一般函数指针
+LRESULT(CALLBACK * PCoreHookProcess)(int nCode, WPARAM wParam, LPARAM lParam);
+MEMBERFUNCTION_TO_NORMALFUNCTION(this, &BaseHook::CoreHookProcess, &PCoreHookProcess);
+//===============================================================
+point_HookID = SetWindowsHookEx(GetHookType(), PCoreHookProcess, hMod, GetThreadId());
+```
 
-
-
-  Hook模块需要继承BaseHook，重载HookProcess
   
   依赖
   
