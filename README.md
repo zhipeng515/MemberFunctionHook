@@ -19,9 +19,7 @@ GamePageUi::GamePageUi()
 LRESULT GamePageUi::KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	//屏蔽F10
-	if (wParam == VK_F10)
-		return 1;
-	return 0;
+	return (wParam == VK_F10) ? 1 : 0;
 }
 ```
 
